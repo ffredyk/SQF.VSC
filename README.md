@@ -3,6 +3,8 @@
 Syntax highlighting, real-time diagnostics, IntelliSense, hover docs, wiki lookup,
 snippets, formatting, and build integration for **Arma SQF** and **SQ# (SQF Sharp)**.
 
+> Powered by the [SQ# engine](https://github.com/ffredyk/SQF.NET) — a .NET reimplementation of Arma 3's SQF scripting language.
+
 ## Features
 
 | Feature | Description |
