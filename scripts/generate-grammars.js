@@ -9,7 +9,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const REFERENCE = path.resolve(__dirname, '..', '..', 'SQF.NET', 'reference.txt');
+const REFERENCE = path.resolve(__dirname, '..', 'reference.txt');
 const SQF_OUT = path.resolve(__dirname, '..', 'syntaxes', 'sqf.tmLanguage.json');
 const SQS_OUT = path.resolve(__dirname, '..', 'syntaxes', 'sqsharp.tmLanguage.json');
 
