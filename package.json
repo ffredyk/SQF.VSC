@@ -1,7 +1,7 @@
 {
   "name": "sqf-vscode",
-  "displayName": "SQF Language Support",
-  "description": "Syntax highlighting, diagnostics, and compilation for Arma SQF and SQ#",
+  "displayName": "Arma SQF & SQ# Language",
+  "description": "Syntax highlighting, real-time diagnostics, IntelliSense, wiki lookup, and compilation for Arma SQF and SQ# (SQF Sharp)",
   "version": "0.1.0",
   "publisher": "ffredyk",
   "license": "MIT",
