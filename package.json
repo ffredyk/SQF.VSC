@@ -1,0 +1,274 @@
+{
+  "name": "sqf-vscode",
+  "displayName": "SQF Language Support",
+  "description": "Syntax highlighting, diagnostics, and compilation for Arma SQF and SQ#",
+  "version": "0.1.0",
+  "publisher": "ffredyk",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Linters"
+  ],
+  "keywords": [
+    "sqf",
+    "sq#",
+    "sqsharp",
+    "arma",
+    "sqfsharp"
+  ],
+  "activationEvents": [
+    "onLanguage:sqf",
+    "onLanguage:sqsharp"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "sqf",
+        "aliases": [
+          "Arma SQF",
+          "sqf",
+          "SQF"
+        ],
+        "extensions": [
+          ".sqf"
+        ],
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "light": "./icons/sqf-light.svg",
+          "dark": "./icons/sqf-dark.svg"
+        }
+      },
+      {
+        "id": "sqsharp",
+        "aliases": [
+          "SQ#",
+          "sqsharp",
+          "SQF Sharp",
+          "SQF#"
+        ],
+        "extensions": [],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "sqf",
+        "scopeName": "source.sqf",
+        "path": "./syntaxes/sqf.tmLanguage.json"
+      },
+      {
+        "language": "sqsharp",
+        "scopeName": "source.sqsharp",
+        "path": "./syntaxes/sqsharp.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "sqf",
+        "path": "./snippets/sqf.json"
+      },
+      {
+        "language": "sqsharp",
+        "path": "./snippets/sqf.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "sqf.switchToSQSharp",
+        "title": "SQF: Switch file to SQ# mode",
+        "category": "SQF"
+      },
+      {
+        "command": "sqf.switchToArmaSQF",
+        "title": "SQF: Switch file to Arma SQF mode",
+        "category": "SQF"
+      },
+      {
+        "command": "sqf.compile",
+        "title": "SQ#: Compile current file",
+        "category": "SQF"
+      },
+      {
+        "command": "sqf.run",
+        "title": "SQ#: Run current file",
+        "category": "SQF"
+      },
+      {
+        "command": "sqf.lexFile",
+        "title": "SQ#: Lex current file (token dump)",
+        "category": "SQF"
+      },
+      {
+        "command": "sqf.parseFile",
+        "title": "SQ#: Parse current file (AST dump)",
+        "category": "SQF"
+      },
+      {
+        "command": "sqf.openWiki",
+        "title": "SQF: Open Wiki for command at cursor",
+        "category": "SQF"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "sqf.openWiki",
+          "when": "editorLangId == sqf || editorLangId == sqsharp",
+          "group": "1_sqf@1"
+        },
+        {
+          "command": "sqf.compile",
+          "when": "editorLangId == sqf || editorLangId == sqsharp",
+          "group": "1_sqf@2"
+        },
+        {
+          "command": "sqf.run",
+          "when": "editorLangId == sqf || editorLangId == sqsharp",
+          "group": "1_sqf@3"
+        },
+        {
+          "command": "sqf.switchToSQSharp",
+          "when": "editorLangId == sqf",
+          "group": "1_sqf@9"
+        },
+        {
+          "command": "sqf.switchToArmaSQF",
+          "when": "editorLangId == sqsharp",
+          "group": "1_sqf@9"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "sqf.switchToSQSharp",
+          "when": "editorLangId == sqf"
+        },
+        {
+          "command": "sqf.switchToArmaSQF",
+          "when": "editorLangId == sqsharp"
+        },
+        {
+          "command": "sqf.compile",
+          "when": "editorLangId == sqf || editorLangId == sqsharp"
+        },
+        {
+          "command": "sqf.run",
+          "when": "editorLangId == sqf || editorLangId == sqsharp"
+        },
+        {
+          "command": "sqf.lexFile",
+          "when": "editorLangId == sqf || editorLangId == sqsharp"
+        },
+        {
+          "command": "sqf.parseFile",
+          "when": "editorLangId == sqf || editorLangId == sqsharp"
+        },
+        {
+          "command": "sqf.openWiki",
+          "when": "editorLangId == sqf || editorLangId == sqsharp"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "sqf.openWiki",
+        "key": "ctrl+k ctrl+w",
+        "when": "editorLangId == sqf || editorLangId == sqsharp"
+      }
+    ],
+    "configuration": {
+      "title": "SQF",
+      "properties": {
+        "sqf.sqsharpCliPath": {
+          "type": "string",
+          "default": "",
+          "description": "Path to the SQ# CLI executable. Leave empty to search PATH for 'sqf'."
+        },
+        "sqf.lintOnSave": {
+          "type": "boolean",
+          "default": true,
+          "description": "Run SQ# diagnostics on file save (all .sqf files)."
+        },
+        "sqf.lintOnChange": {
+          "type": "boolean",
+          "default": true,
+          "description": "Run SQ# diagnostics as you type (all .sqf files)."
+        }
+      }
+    },
+    "taskDefinitions": [
+      {
+        "type": "sqf-compile",
+        "required": [
+          "file"
+        ],
+        "properties": {
+          "file": {
+            "type": "string",
+            "description": "The .sqf file to compile"
+          },
+          "binary": {
+            "type": "boolean",
+            "description": "Output binary .sqfc instead of text"
+          },
+          "output": {
+            "type": "string",
+            "description": "Output file path (for binary mode)"
+          }
+        }
+      },
+      {
+        "type": "sqf-run",
+        "required": [
+          "file"
+        ],
+        "properties": {
+          "file": {
+            "type": "string",
+            "description": "The .sqf file to run"
+          }
+        }
+      }
+    ],
+    "problemMatchers": [
+      {
+        "name": "sqf-error",
+        "label": "SQ# parser/compiler errors",
+        "owner": "sqsharp",
+        "source": "sqsharp",
+        "pattern": {
+          "regexp": "^(.+?)\\((\\d+),(\\d+)\\):\\s*(.+)$",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "message": 4
+        }
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile && npm run publish-cli",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts",
+    "package": "vsce package",
+    "publish-cli": "node scripts/publish-cli.js",
+    "generate-grammars": "node scripts/generate-grammars.js",
+    "publish-cli:win-x64": "dotnet publish ../SQF.NET/src/SQSharp.CLI/SQSharp.CLI.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o bin/win-x64",
+    "publish-cli:linux-x64": "dotnet publish ../SQF.NET/src/SQSharp.CLI/SQSharp.CLI.csproj -c Release -r linux-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o bin/linux-x64",
+    "publish-cli:osx-x64": "dotnet publish ../SQF.NET/src/SQSharp.CLI/SQSharp.CLI.csproj -c Release -r osx-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o bin/osx-x64",
+    "publish-cli:osx-arm64": "dotnet publish ../SQF.NET/src/SQSharp.CLI/SQSharp.CLI.csproj -c Release -r osx-arm64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o bin/osx-arm64"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.90.0",
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "eslint": "^8.0.0",
+    "typescript": "^5.4.0",
+    "@vscode/vsce": "^2.0.0"
+  }
+}
