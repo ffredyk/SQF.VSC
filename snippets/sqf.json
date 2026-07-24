@@ -1,0 +1,127 @@
+{
+  "if-then": {
+    "prefix": "if",
+    "body": "if (${1:condition}) then {\n\t${2:// code}\n};$0",
+    "description": "if-then statement"
+  },
+  "if-then-else": {
+    "prefix": "ife",
+    "body": "if (${1:condition}) then {\n\t${2:// then code}\n} else {\n\t${3:// else code}\n};$0",
+    "description": "if-then-else statement"
+  },
+  "if-exitWith": {
+    "prefix": "ifex",
+    "body": "if (${1:condition}) exitWith {\n\t${2:// code}\n};$0",
+    "description": "if-exitWith statement"
+  },
+  "while-do": {
+    "prefix": "while",
+    "body": "while { ${1:condition} } do {\n\t${2:// code}\n};$0",
+    "description": "while-do loop"
+  },
+  "for-do": {
+    "prefix": "for",
+    "body": "for [{ ${1:_i = 0} }, { ${2:_i < _count} }, { ${3:_i = _i + 1} }] do {\n\t${4:// code}\n};$0",
+    "description": "for-do loop (C-style)"
+  },
+  "for-from-to": {
+    "prefix": "forf",
+    "body": "for \"_i\" from ${1:0} to ${2:10} do {\n\t${3:// code}\n};$0",
+    "description": "for-from-to loop (range)"
+  },
+  "for-from-to-step": {
+    "prefix": "forfs",
+    "body": "for \"_i\" from ${1:0} to ${2:10} step ${3:2} do {\n\t${4:// code}\n};$0",
+    "description": "for-from-to-step loop"
+  },
+  "switch-do": {
+    "prefix": "switch",
+    "body": "switch (${1:_value}) do {\n\tcase ${2:match1}: {\n\t\t${3:// code}\n\t};\n\tcase ${4:match2}: {\n\t\t${5:// code}\n\t};\n\tdefault {\n\t\t${6:// default code}\n\t};\n};$0",
+    "description": "switch-do statement"
+  },
+  "try-catch": {
+    "prefix": "try",
+    "body": "try {\n\t${1:// code}\n} catch {\n\t${2:// error handler}\n};$0",
+    "description": "try-catch block (SQ#)"
+  },
+  "private": {
+    "prefix": "private",
+    "body": "private [${1:\"_var1\", \"_var2\"}];$0",
+    "description": "private variable declaration"
+  },
+  "params": {
+    "prefix": "params",
+    "body": "params [${1:\"_param1\", \"_param2\"}];$0",
+    "description": "params declaration"
+  },
+  "call-code": {
+    "prefix": "call",
+    "body": "call {\n\t${1:// code}\n};$0",
+    "description": "call code block"
+  },
+  "spawn-code": {
+    "prefix": "spawn",
+    "body": "spawn {\n\t${1:// code}\n};$0",
+    "description": "spawn code block (new fiber)"
+  },
+  "spawnOn": {
+    "prefix": "spawnOn",
+    "body": "spawnOn [\"${1:scheduler}\", {\n\t${2:// code}\n}];$0",
+    "description": "spawnOn another scheduler (SQ#)"
+  },
+  "forEach": {
+    "prefix": "forEach",
+    "body": "{\n\t${1:// _x is current element}\n} forEach ${2:_array};$0",
+    "description": "forEach loop"
+  },
+  "shared": {
+    "prefix": "shared",
+    "body": "shared ${1:_var} = ${2:0};$0",
+    "description": "shared (atomic) variable declaration (SQ#)"
+  },
+  "hint": {
+    "prefix": "hint",
+    "body": "hint \"${1:message}\";$0",
+    "description": "hint message"
+  },
+  "systemChat": {
+    "prefix": "syschat",
+    "body": "systemChat \"${1:message}\";$0",
+    "description": "systemChat message"
+  },
+  "diag_log": {
+    "prefix": "diag",
+    "body": "diag_log \"${1:message}\";$0",
+    "description": "diag_log debug output"
+  },
+  "format": {
+    "prefix": "format",
+    "body": "format [\"${1:%1: %2}\", ${2:_var1}, ${3:_var2}]$0",
+    "description": "format string"
+  },
+  "createHashMap": {
+    "prefix": "hashmap",
+    "body": "createHashMapFromArray [\n\t[\"${1:key}\", ${2:value}]\n];$0",
+    "description": "create hashmap from array"
+  },
+  "function-def": {
+    "prefix": "func",
+    "body": "${1:myFunction} = {\n\t${2:// code}\n};$0",
+    "description": "function definition"
+  },
+  "addEventHandler": {
+    "prefix": "addeh",
+    "body": "${1:_object} addEventHandler [\"${2:eventName}\", {\n\tparams [\"_this\"];\n\t${3:// handler code}\n}];$0",
+    "description": "add event handler"
+  },
+  "preprocessFile": {
+    "prefix": "include",
+    "body": "#include \"${1:file.sqf}\"$0",
+    "description": "preprocessor include"
+  },
+  "define": {
+    "prefix": "define",
+    "body": "#define ${1:MACRO} ${2:value}$0",
+    "description": "preprocessor define"
+  }
+}
